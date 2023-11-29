@@ -35,6 +35,13 @@ body {
 
 }
 
+.badge {
+  background-color: lightseagreen;
+  color: white;
+  padding: 4px 8px;
+  text-align: center;
+  border-radius: 5px;
+}
 .wppBtn {
   display: none;
   position: fixed;
@@ -227,7 +234,7 @@ return true;
       <a class="button button-google-black" href="https://drive.google.com/drive/folders/1nPGLr1qXr0rKMvixLMOhmrO-hOIpZb4C?usp=sharing" target="_blank" rel="noopener" role="button"><img class="icon" src="images/icons/google-drive.svg" alt="">Logo Abdidaya Ormawa 2023</a><br>
 
       <!-- Twibbon -->
-      <a class="button button-patreon" href="https://twb.abdidaya.unej.ac.id" target="_blank" rel="noopener" role="button"><img class="icon" src="images/icons/skoob.svg" alt="">Bikin Twibbonmu</a><br>
+      <a class="button button-patreon" href="https://twb.abdidaya.unej.ac.id" target="_blank" rel="noopener" role="button"><img class="icon" src="images/icons/skoob.svg" alt="">Twibbon dibuat <span class="badge hitung_generate" style="padding-left:10px;">0 x</span></a><br>
       
       <!-- Line -->
       <a class="button button-line" href="https://github.com/upttiunej/denahunej/releases/download/release/Denah.UNEJ.Release.-late2023.png" target="_blank" rel="noopener" role="button"><img class="icon" src="images/icons/generic-map.svg" alt="">Denah UNEJ</a><br>
@@ -354,6 +361,23 @@ return true;
     $('.wppBtn').fadeOut();
   }
 });
+
+$(window).ready(function(e){
+  $.ajaxSetup({
+    headers: { 'xc-token': 'SwM63QmbzBquL-r9uqGMpO1uEafTjcEAuGxq85n9' }
+});
+   $.ajax({
+   	url:'https://form.apps.unej.ac.id/api/v1/db/data/v1/twibbonz-stats/counting/count',
+    method:"get",
+    dataType:'json',
+    success:function(data){
+     	console.log(data.count); 
+      $('.hitung_generate').text(data.count+' x');
+      
+      
+    }
+   })
+})
 	</script>
 </body>
 
